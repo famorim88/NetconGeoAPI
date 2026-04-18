@@ -1,0 +1,6 @@
+@NetconGeoAPI_HostAddress = http://localhost:5119
+
+GET {{NetconGeoAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
