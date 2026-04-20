@@ -15,7 +15,7 @@ namespace NetconGeoAPI.Web.Middleware
         {
             var stopwatch = Stopwatch.StartNew();
 
-            var requestId = context.TraceIdentifier;
+            var requestId = Guid.NewGuid().ToString();
 
             context.Response.OnStarting(() =>
             {

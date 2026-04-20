@@ -12,7 +12,7 @@ namespace NetconGeoAPI.Application.Services
             _repository = repository;
         }
 
-        public async Task<IEnumerable<FeasibilityResponse>> GetNearbyElementsAsync(double centerLat, double centerLon, double radius, int page)
+        public async Task<IEnumerable<FeasibilityResponse>> GetNearbyElementsAsync(double centerLat, double centerLon, double radius, int page, int size = 20)
         {
             var elements = await _repository.GetAllActiveOrReservedAsync();
 
@@ -25,12 +25,12 @@ namespace NetconGeoAPI.Application.Services
                     CalculateHaversine(centerLat, centerLon, e.Latitude, e.Longitude)
                 ))
                 // Filtra pelo raio informado (em metros)
-                .Where(x => x.Distance <= radius)
+                .Where(x => x.Radius <= radius)
                 // Ordena pela menor distância
-                .OrderBy(x => x.Distance)
+                .OrderBy(x => x.Radius)
                 // Paginação: 20 registros por página
                 .Skip((page - 1) * 20)
-                .Take(20)
+                .Take(size)
                 .ToList();
 
             return result;

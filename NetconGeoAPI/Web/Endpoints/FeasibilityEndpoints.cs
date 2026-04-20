@@ -24,7 +24,8 @@ namespace NetconGeoAPI.Web.Endpoints
                     request.Latitude,
                     request.Longitude,
                     request.Radius,
-                    request.Page);
+                    request.Page,
+                    request.Size);
 
                 return Results.Ok(result);
             });

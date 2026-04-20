@@ -19,9 +19,12 @@
 
                 var response = new
                 {
-                    Error = "Internal Server Error",
-                    Message = ex.Message,
-                    Timestamp = DateTime.UtcNow
+                    code = 500,
+                    reason = "Internal Server Error",
+                    message = "general fail",//ex.Message,
+                    status = "Internal Server Error",
+                    timestamp = DateTime.UtcNow,
+                    exception = ex.Message
                 };
 
                 await context.Response.WriteAsJsonAsync(response);
