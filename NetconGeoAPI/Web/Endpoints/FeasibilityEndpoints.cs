@@ -17,7 +17,15 @@ namespace NetconGeoAPI.Web.Endpoints
                 var validationResult = await validator.ValidateAsync(request);
                 if (!validationResult.IsValid)
                 {
-                    return Results.ValidationProblem(validationResult.ToDictionary());
+                    return Results.BadRequest(new 
+                    {
+                        code = 400,
+                        reason = validationResult.Errors,
+                        message = validationResult.ToDictionary(),
+                        status = "bad request",
+                        timestamp = DateTime.UtcNow,
+
+                    });
                 }
 
                 var result = await service.GetNearbyElementsAsync(

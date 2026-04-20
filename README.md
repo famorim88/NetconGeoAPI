@@ -29,7 +29,7 @@ O projeto segue os princípios de **Domain-Driven Design (DDD)**, organizado nas
 
 ## 🐳 Como Executar via Docker
 
-Certifique-se de ter o Docker instalado em sua máquina.
+Certifique-se de ter o Docker instalado em sua máquina e dar um "cd" para a pasta NetconnGeoAPI.
 
 1.  **Build da Imagem**:
     ```bash
@@ -54,9 +54,10 @@ Retorna os elementos dentro do raio especificado, ordenados por proximidade.
     - `longitude` (double): Longitude do ponto central.
     - `radius` (double): Raio de busca em metros.
     - `page` (int, opcional): Número da página (padrão 1).
+    - `size` (int, opcional): Número de itens por pagina (padrão 20).
 
 **Exemplo de Requisição**:
-`GET http://localhost:8080/api/feasibility?latitude=-22.9101&longitude=-43.1829&radius=5000&page=1`
+`GET http://localhost:8080/api/feasibility?latitude=-22.91111&longitude=-43.18111&radius=1000&page=1&size=5`
 
 ### 2. Health Check
 Verifica o status da aplicação.
@@ -75,7 +76,8 @@ Os logs são gerados automaticamente na pasta `/app/logs` dentro do container. C
 A API utiliza **FluentValidation** para garantir que:
 - Latitude esteja entre -90 e 90.
 - Longitude esteja entre -180 e 180.
-- Raio seja um valor positivo.
+- Latitude e Longitude deve ter pelo menos 5 casas decimais para fins de precisão.
+- Raio seja um valor positivo, maior que 10m e até 1km
 
 ---
 Desenvolvido por Felipe Amorim - 2026

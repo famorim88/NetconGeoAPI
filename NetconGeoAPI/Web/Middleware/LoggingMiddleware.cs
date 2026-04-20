@@ -17,7 +17,7 @@ namespace NetconGeoAPI.Web.Middleware
         public async Task InvokeAsync(HttpContext context)
         {
             var sw = Stopwatch.StartNew();
-            var requestPath = $"{context.Request.Method} {context.Request.Path}";
+            var requestPath = $"{context.Request.Method} {context.Request.Scheme}{context.Request.Host}{context.Request.QueryString}";
 
             try
             {

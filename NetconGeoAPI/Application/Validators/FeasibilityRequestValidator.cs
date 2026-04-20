@@ -15,7 +15,7 @@ namespace NetconGeoAPI.Application.Validators
                 .Must(HasMinimumPrecision).WithMessage("A Longitude deve ter no mínimo 5 casas decimais para precisão técnica.");
 
             RuleFor(x => x.Radius).GreaterThan(10).WithMessage("O raio deve ser maior que 10m.")
-                                   .LessThanOrEqualTo(1000).WithMessage("O raio deve ser menor que 1Km.");
+                                   .LessThanOrEqualTo(1000).WithMessage("O raio deve ser até 1Km.");
             
             RuleFor(x => x.Page).GreaterThanOrEqualTo(1).WithMessage("A página deve ser maior ou igual a 1.");
 
